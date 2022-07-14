@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm install --production && webpack serve",
+    "start": "node server.js",
     "dev": "webpack serve --port 3200",
     "build": "webpack --mode production"
   },
@@ -32,6 +32,7 @@
     "webpack-dev-server": "^4.9.3"
   },
   "dependencies": {
+    "express": "^4.18.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.3.0"

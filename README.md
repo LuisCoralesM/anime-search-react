@@ -1,1 +1,1 @@
-# anime-search-react
+# Anime Search React

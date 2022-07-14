@@ -9,6 +9,8 @@ import {
 import routesObject from "./routes/routes";
 
 const App = () => {
+  console.log(window !== undefined);
+
   return (
     <Router>
       <Routes>

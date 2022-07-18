@@ -5,6 +5,7 @@
     "module": "esnext",
     "moduleResolution": "node",
     "lib": ["dom", "esnext"],
+    "noImplicitAny": true,
     "strict": true,
     "sourceMap": true,
     "target": "esnext"

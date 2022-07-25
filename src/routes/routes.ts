@@ -1,4 +1,6 @@
 import Home from "../views/Home";
+import Results from "../views/Results";
+import SingleView from "../views/SingleView";
 
 interface IRoute {
   path: string;
@@ -9,6 +11,14 @@ const routesObject: IRoute[] = [
   {
     path: "/",
     component: Home,
+  },
+  {
+    path: "/list",
+    component: Results,
+  },
+  {
+    path: "/details",
+    component: SingleView,
   },
 ];
 

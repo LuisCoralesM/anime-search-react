@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { SearchContext } from "../context/context";
 
 const Results = () => {
-  const { listData, fetchAnime, setContextListData } =
+  const { listData, getAnime: fetchAnime, setContextListData } =
     useContext(SearchContext);
 
   useEffect(() => {

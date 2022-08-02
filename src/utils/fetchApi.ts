@@ -29,9 +29,9 @@ export async function fetchApi(
   }
 }
 
-export async function fetchAnime(term: string): Promise<IFetchObject> {
+export async function getAnime(term: string): Promise<IFetchObject> {
   try {
-    const getResponse = await fetch(`https://api.jikan.moe/v4/anime?q=${term}`);
+    const getResponse = await fetch(`${API_URL_ANIME}?q=${term}`);
 
     return {
       data: await getResponse.json(),

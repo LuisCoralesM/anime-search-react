@@ -6,10 +6,10 @@ import {
   Routes,
 } from "react-router-dom";
 
-import Nav from "./components/Nav";
+import Nav from "./components/Nav/Nav";
 import { SearchContext } from "./context/context";
 import routesObject from "./routes/routes";
-import { fetchAnime } from "./utils/fetchApi";
+import { getAnime } from "./utils/fetchApi";
 
 const App = () => {
   const [listData, setListData] = useState([]);
@@ -23,7 +23,7 @@ const App = () => {
       value={{
         listData: listData,
         singleData: singleData,
-        fetchAnime: fetchAnime,
+        getAnime: getAnime,
         setContextListData: setContextListData,
         setContextSingleData: setContextSingleData,
       }}

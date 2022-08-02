@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { FormControl, Grid, IconButton, Input } from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
 
 import { SearchContext } from "../context/context";
 
@@ -9,18 +10,23 @@ const LOGO_IMG =
   "https://www.pngitem.com/pimgs/m/113-1133466_transparent-dragon-ball-xenoverse-png-dragon-ball-z.png";
 
 const Home = () => {
-  const { fetchAnime, setContextListData } = useContext(SearchContext);
+  const navigate = useNavigate();
+
+  const { getAnime: fetchAnime, setContextListData } = useContext(SearchContext);
   const [input, setInput] = useState<string>();
+  const [hasSearched, setHasSearched] = useState<boolean>(false);
 
   async function handleSearch(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
 
     if (!input) return;
 
+    setHasSearched(true);
+
     const response = await fetchAnime(input);
     setContextListData(response.data.data);
     localStorage.setItem("myData", JSON.stringify(response.data.data));
-    useNavigate()("/list");
+    navigate("/list");
   }
 
   return (
@@ -51,10 +57,11 @@ const Home = () => {
                 disabled={!input}
                 onClick={handleSearch}
               >
-                S
+                <SearchIcon />
               </IconButton>
             </FormControl>
           </form>
+          {hasSearched ? <>searching</> : ""}
         </Grid>
       </Grid>
     </Grid>

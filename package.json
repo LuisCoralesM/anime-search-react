@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "webpack serve --port 3200",
+    "dev": "webpack serve --port 3001",
     "build": "webpack --mode production",
     "test": "jest --watch"
   },

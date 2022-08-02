@@ -1,13 +1,15 @@
+import { API_URL, API_URL_ANIME } from "./apiUrl";
+
 export interface IFetchObject {
-  data?: any;
+  data: any;
   ok: boolean;
 }
 
 // Get response from API
 export async function fetchApi(
   url: string,
-  method: string,
-  body: {}
+  method?: string,
+  body?: {}
 ): Promise<IFetchObject> {
   try {
     const getResponse = await fetch(url, {
@@ -23,6 +25,19 @@ export async function fetchApi(
       ok: getResponse.ok,
     };
   } catch (error) {
-    return { ok: false };
+    return { data: undefined, ok: false };
+  }
+}
+
+export async function fetchAnime(term: string): Promise<IFetchObject> {
+  try {
+    const getResponse = await fetch(`https://api.jikan.moe/v4/anime?q=${term}`);
+
+    return {
+      data: await getResponse.json(),
+      ok: getResponse.ok,
+    };
+  } catch (error) {
+    return { data: undefined, ok: false };
   }
 }

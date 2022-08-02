@@ -7,6 +7,6 @@ describe("Nav component", () => {
   test("renders the nav", async () => {
     render(<Nav />);
 
-    expect(await screen.findByText("Nav")).toHaveTextContent("Nav");
+    expect(await screen.findByText("My Anime App")).toBeTruthy();
   });
 });

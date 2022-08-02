@@ -7,6 +7,6 @@ describe("Home view", () => {
   test("renders the view", async () => {
     render(<Home />);
 
-    expect(await screen.findByText("Home")).toHaveTextContent("Home");
+    expect(await screen.findByText("Search for your fave anime"));
   });
 });

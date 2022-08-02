@@ -1,9 +1,11 @@
-import { createContext } from 'react';
+import { createContext } from "react";
+import { API_URL } from "../utils/apiUrl";
+import { fetchAnime, fetchApi } from "../utils/fetchApi";
 
 export const SearchContext = createContext({
-  animeData: [],
+  listData: [],
   singleData: {},
-  search: () => {},
-  setData: () => {},
-  setSingle: () => {},
+  fetchAnime,
+  setContextListData: (data: []) => {},
+  setContextSingleData: (data: {}) => {},
 });

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { FormControl, Grid, IconButton, Input } from "@mui/material";
@@ -11,8 +11,8 @@ const LOGO_IMG =
 
 const Home = () => {
   const navigate = useNavigate();
+  const searchContext = useContext(SearchContext);
 
-  const { getAnime: fetchAnime, setContextListData } = useContext(SearchContext);
   const [input, setInput] = useState<string>();
   const [hasSearched, setHasSearched] = useState<boolean>(false);
 
@@ -23,8 +23,8 @@ const Home = () => {
 
     setHasSearched(true);
 
-    const response = await fetchAnime(input);
-    setContextListData(response.data.data);
+    const response = await searchContext.getAnime(input);
+    searchContext.setContextListData(response.data.data);
     localStorage.setItem("myData", JSON.stringify(response.data.data));
     navigate("/list");
   }

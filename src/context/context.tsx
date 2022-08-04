@@ -11,7 +11,7 @@ export const SearchContext = createContext<IContext>({
   setContextSingleData: () => {},
 });
 
-export const SearchProvider = ({ children }) => {
+export const SearchProvider = ({ children }: any) => {
   const [listData, setListData] = useState<IAnimeObject[]>([]);
   const [singleData, setSingleData] = useState<IAnimeObject>();
   const setContextListData = (data: IAnimeObject[]) => setListData(data);

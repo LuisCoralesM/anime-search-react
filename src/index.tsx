@@ -1,7 +1,10 @@
 import "./index.css";
 import "./styles/home.css";
+import "./styles/animeCard.css";
+
 import React from "react";
 import { createRoot } from "react-dom/client";
+
 import App from "./App";
 
 const container = document.getElementById("app");

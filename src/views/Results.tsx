@@ -14,7 +14,11 @@ const Results = () => {
 
         if (typeof localData !== "string") throw new Error();
 
-        searchContext.setContextListData(JSON.parse(localData));
+        const parsedData = JSON.parse(localData);
+
+        if (parsedData.length === 0) throw new Error();
+
+        searchContext.setContextListData(parsedData);
         setDataExists(true);
       } catch (error) {
         setDataExists(false);
@@ -24,7 +28,7 @@ const Results = () => {
 
   return (
     <Box mt={2}>
-      {(dataExists && <AnimeList />) || (
+      {(dataExists && <AnimeList listData={searchContext.listData} />) || (
         <Typography variant="h4">Data does not exist</Typography>
       )}
     </Box>

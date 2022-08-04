@@ -1,17 +1,21 @@
-import React, { useContext } from "react";
-import { SearchContext } from "../../context/context";
+import React from "react";
 
-const AnimeList = () => {
-  const searchContext = useContext(SearchContext);
+import { ImageList } from "@mui/material";
 
-  console.log(searchContext?.listData);
+import { IAnimeObject } from "../../types";
+import AnimeCard from "./AnimeCard";
 
+interface IListProps {
+  listData: IAnimeObject[];
+}
+
+const AnimeList = (props: IListProps) => {
   return (
-    <div>
-      {searchContext?.listData.map((item, index) => (
-        <div key={index}>{item.source}</div>
+    <ImageList>
+      {props.listData.map((data) => (
+        <AnimeCard key={data.mal_id} data={data} />
       ))}
-    </div>
+    </ImageList>
   );
 };
 

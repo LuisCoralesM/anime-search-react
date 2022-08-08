@@ -1,3 +1,4 @@
+import { IAnimeObject } from "../types";
 import { API_URL, API_URL_ANIME } from "./apiUrl";
 
 export interface IFetchObject {
@@ -34,7 +35,20 @@ export async function getAnime(term: string): Promise<IFetchObject> {
     const getResponse = await fetch(`${API_URL_ANIME}?q=${term}`);
 
     return {
-      data: await getResponse.json(),
+      data: await getResponse.json() as IAnimeObject[],
+      ok: getResponse.ok,
+    };
+  } catch (error) {
+    return { data: undefined, ok: false };
+  }
+}
+
+export async function getAnimeById(id: number): Promise<IFetchObject> {
+  try {
+    const getResponse = await fetch(`${API_URL_ANIME}/${id}`);
+
+    return {
+      data: await getResponse.json() as IAnimeObject,
       ok: getResponse.ok,
     };
   } catch (error) {

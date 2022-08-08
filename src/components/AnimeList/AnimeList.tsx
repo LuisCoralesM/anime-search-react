@@ -11,7 +11,7 @@ interface IListProps {
 
 const AnimeList = (props: IListProps) => {
   return (
-    <ImageList>
+    <ImageList className="animeList_container">
       {props.listData.map((data) => (
         <AnimeCard key={data.mal_id} data={data} />
       ))}

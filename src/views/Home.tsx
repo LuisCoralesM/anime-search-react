@@ -24,6 +24,7 @@ const Home = () => {
     setHasSearched(true);
 
     const response = await searchContext.getAnime(input);
+
     searchContext.setContextListData(response.data.data);
     localStorage.setItem("myData", JSON.stringify(response.data.data));
     navigate("/list");

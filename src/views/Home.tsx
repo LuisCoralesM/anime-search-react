@@ -25,8 +25,17 @@ const Home = () => {
 
     const response = await searchContext.getAnime(input);
 
+    console.log("1");
+    console.log(response);
+
+    if (!response.data) return;
+
+    console.log("a");
+
     searchContext.setContextListData(response.data.data);
     localStorage.setItem("myData", JSON.stringify(response.data.data));
+    console.log("b");
+
     navigate("/list");
   }
 

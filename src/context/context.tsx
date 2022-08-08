@@ -12,7 +12,7 @@ export const SearchContext = createContext<IContext>({
 });
 
 export const SearchProvider = ({ children }: any) => {
-  const [listData, setListData] = useState<IAnimeObject[]>([]);
+  const [listData, setListData] = useState<IAnimeObject[]>([]); //useReducer
   const [singleData, setSingleData] = useState<IAnimeObject>();
   const setContextListData = (data: IAnimeObject[]) => setListData(data);
   const setContextSingleData = (data: IAnimeObject) => setSingleData(data);

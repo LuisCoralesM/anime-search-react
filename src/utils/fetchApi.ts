@@ -1,25 +1,19 @@
-import { IAnimeObject } from "../types";
-import { API_URL, API_URL_ANIME } from "./apiUrl";
+import { IAnimeObject, IApiResponse } from "../types";
+import { API_URL_ANIME } from "./apiUrl";
 
 export interface IFetchObject {
-  data: any;
+  data: IApiResponse | undefined;
   ok: boolean;
 }
 
-// Get response from API
-export async function fetchApi(
-  url: string,
-  method?: string,
-  body?: {}
-): Promise<IFetchObject> {
+export interface IFetchSingleObject {
+  data: IAnimeObject | undefined;
+  ok: boolean;
+}
+
+export async function getAnime(term: string): Promise<IFetchObject> {
   try {
-    const getResponse = await fetch(url, {
-      method: method,
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(body),
-    });
+    const getResponse = await fetch(`${API_URL_ANIME}?q=${term}`);
 
     return {
       data: await getResponse.json(),
@@ -30,25 +24,12 @@ export async function fetchApi(
   }
 }
 
-export async function getAnime(term: string): Promise<IFetchObject> {
-  try {
-    const getResponse = await fetch(`${API_URL_ANIME}?q=${term}`);
-
-    return {
-      data: await getResponse.json() as IAnimeObject[],
-      ok: getResponse.ok,
-    };
-  } catch (error) {
-    return { data: undefined, ok: false };
-  }
-}
-
-export async function getAnimeById(id: number): Promise<IFetchObject> {
+export async function getAnimeById(id: number): Promise<IFetchSingleObject> {
   try {
     const getResponse = await fetch(`${API_URL_ANIME}/${id}`);
 
     return {
-      data: await getResponse.json() as IAnimeObject,
+      data: (await getResponse.json()) as IAnimeObject,
       ok: getResponse.ok,
     };
   } catch (error) {

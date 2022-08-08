@@ -19,14 +19,6 @@ describe("Home view", () => {
     expect(input).toBeTruthy();
   });
 
-  test("writes in the input field", async () => {
-    const { input } = setup();
-
-    fireEvent.change(input, { target: { value: "naruto" } });
-
-    expect(input.value).toBe("naruto");
-  });
-
   test("search button disabled and then enabled after writing in input", async () => {
     const { input, button } = setup();
 
@@ -37,13 +29,13 @@ describe("Home view", () => {
     expect(button.disabled).toBe(false);
   });
 
-  // mock api somehow
-  // test("search for an anime", async () => {
-  //   const { input, button } = setup();
+  test("search for an anime", async () => {
+    const { input, button } = setup();
 
-  //   fireEvent.change(input, { target: { value: "naruto" } });
-  //   fireEvent.click(button);
+    fireEvent.change(input, { target: { value: "" } });
+    fireEvent.change(input, { target: { value: "naruto" } });
+    fireEvent.click(button);
 
-  //   expect(screen.getByText("searching")).toBeTruthy();
-  // });
+    expect(screen.getByText("searching")).toBeTruthy();
+  });
 });

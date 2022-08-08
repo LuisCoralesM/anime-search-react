@@ -29,7 +29,7 @@ export async function getAnimeById(id: number): Promise<IFetchSingleObject> {
     const getResponse = await fetch(`${API_URL_ANIME}/${id}`);
 
     return {
-      data: (await getResponse.json()) as IAnimeObject,
+      data: await getResponse.json(),
       ok: getResponse.ok,
     };
   } catch (error) {

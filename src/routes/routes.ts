@@ -4,7 +4,7 @@ import SingleView from "../views/SingleView";
 
 interface IRoute {
   path: string;
-  component: string | React.FunctionComponent<unknown>;
+  component: string | React.FunctionComponent;
 }
 
 const routesObject: IRoute[] = [

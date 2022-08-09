@@ -1,7 +1,7 @@
 import React from "react";
-import { render, fireEvent, waitFor, screen } from "../tests/utils";
+import { render, fireEvent, waitFor, screen } from "../../tests/utils";
 import "@testing-library/jest-dom";
-import Results from "./Results";
+import Results from "../../views/Results";
 
 describe("Results view", () => {
   test("renders the Results view", async () => {

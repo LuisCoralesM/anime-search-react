@@ -5,31 +5,29 @@ import {
   Route,
   Routes,
 } from "react-router-dom";
+import { Footer } from "./components/Nav/Footer";
 
-import Nav from "./components/Nav";
+import Nav from "./components/Nav/Nav";
+import SearchProvider from "./context/context";
 import routesObject from "./routes/routes";
-import Home from "./views/Home";
-import Results from "./views/Results";
-import SingleView from "./views/SingleView";
 
 const App = () => {
   return (
     <Router>
-      <Nav />
-      <Routes>
-        {routesObject.map((route, index) => (
-          <Route
-            path={route.path}
-            key={index}
-            element={React.createElement(route.component)}
-          />
-        ))}
-        {/* <Route path="/" element={<Home />} />
-        <Route path="/list" element={<Results />} />
-        <Route path="/details" element={<SingleView />} /> */}
-
-        <Route path="*" element={<Navigate to={"/"} />} />
-      </Routes>
+      <SearchProvider>
+        <Nav />
+        <Routes>
+          {routesObject.map((route, index) => (
+            <Route
+              path={route.path}
+              key={index}
+              element={React.createElement(route.component)}
+            />
+          ))}
+          <Route path="*" element={<Navigate to={"/"} />} />
+        </Routes>
+        <Footer />
+      </SearchProvider>
     </Router>
   );
 };

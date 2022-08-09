@@ -1,0 +1,24 @@
+.anime_card_container {
+  margin: 10px;
+
+  cursor: pointer;
+}
+
+.anime_card_paper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+
+  padding: 10px;
+}
+
+.anime_card_paper:hover {
+  background-color: lightgray;
+}
+
+.anime_card_paper:active {
+  opacity: 0.8;
+}

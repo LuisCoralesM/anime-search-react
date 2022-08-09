@@ -78,25 +78,25 @@ export default function Nav() {
   }, [searchContext.listData]);
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" style={{ borderRadius: "8px" }}>
-        <Toolbar className="nav_bar">
-          <Box className="nav_logo_box" onClick={onClickHandler}>
-            <img
-              className="nav_logo"
-              src="https://qph.cf2.quoracdn.net/main-qimg-db5f4dac62ffaf4cad4e9c1f67950eec"
-              alt="logo"
-            />
-            <Typography
-              noWrap
-              className="nav_logo_title"
-              variant="h6"
-              component="div"
-              sx={{ display: { xs: "none", sm: "none", md: "block" } }}
-            >
-              My Anime App
-            </Typography>
-          </Box>
+    <AppBar position="static" style={{ borderRadius: "4px" }}>
+      <Toolbar className="nav_bar">
+        <Box className="nav_logo_box" onClick={onClickHandler}>
+          <img
+            className="nav_logo"
+            src="https://qph.cf2.quoracdn.net/main-qimg-db5f4dac62ffaf4cad4e9c1f67950eec"
+            alt="logo"
+          />
+          <Typography
+            noWrap
+            className="nav_logo_title"
+            variant="h6"
+            component="div"
+            sx={{ display: { xs: "none", sm: "none", md: "block" } }}
+          >
+            My Anime App
+          </Typography>
+        </Box>
+        <Box className="nav_search">
           <Search>
             <form
               onSubmit={(e) =>
@@ -114,8 +114,8 @@ export default function Nav() {
             </form>
           </Search>
           {hasSearched ? <CircularProgress color="inherit" /> : <></>}
-        </Toolbar>
-      </AppBar>
-    </Box>
+        </Box>
+      </Toolbar>
+    </AppBar>
   );
 }

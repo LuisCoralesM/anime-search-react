@@ -1,7 +1,13 @@
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { FormControl, Grid, IconButton, Input } from "@mui/material";
+import {
+  CircularProgress,
+  FormControl,
+  Grid,
+  IconButton,
+  Input,
+} from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 
 import { SearchContext } from "../context/context";
@@ -31,7 +37,7 @@ const Home = () => {
         </Grid>
         <Grid item>
           <form className="home_form">
-            <FormControl className="home_formControl">
+            <FormControl className="home_form_control">
               <Input
                 className="home_input"
                 placeholder="Search for your fave anime"
@@ -39,7 +45,7 @@ const Home = () => {
                 onChange={(e) => setInput(e.target.value)}
               />
               <IconButton
-                className="home_iconButton"
+                className="home_icon_button"
                 type="submit"
                 color="primary"
                 disabled={!input}
@@ -55,9 +61,9 @@ const Home = () => {
               >
                 <SearchIcon />
               </IconButton>
+              {hasSearched ? <CircularProgress color="inherit" /> : <></>}
             </FormControl>
           </form>
-          {hasSearched ? <>searching</> : ""}
         </Grid>
       </Grid>
     </Grid>

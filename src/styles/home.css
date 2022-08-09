@@ -5,7 +5,7 @@
   background-color: aliceblue;
 }
 
-.home_formControl {
+.home_form_control {
   display: flex !important;
   flex-direction: row !important;
 }
@@ -14,7 +14,7 @@
   flex: 1;
 }
 
-.home_iconButton {
+.home_icon_button {
   flex: 0;
   background-color: red;
   cursor: pointer;

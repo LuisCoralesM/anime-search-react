@@ -1,10 +1,10 @@
 import React, { createContext, useState } from "react";
 
-import { IAnimeObject, IContext } from "../types";
+import { IAnimeObject, IApiResponse, IContext } from "../types";
 import { getAnime } from "../utils/fetchApi";
 
 export const SearchContext = createContext<IContext>({
-  listData: [],
+  listData: undefined,
   singleData: undefined,
   getAnime: getAnime,
   setContextListData: () => {},
@@ -12,9 +12,9 @@ export const SearchContext = createContext<IContext>({
 });
 
 export const SearchProvider = ({ children }: any) => {
-  const [listData, setListData] = useState<IAnimeObject[]>([]); //useReducer
+  const [listData, setListData] = useState<IApiResponse>(); //useReducer
   const [singleData, setSingleData] = useState<IAnimeObject>();
-  const setContextListData = (data: IAnimeObject[]) => setListData(data);
+  const setContextListData = (data: IApiResponse) => setListData(data);
   const setContextSingleData = (data: IAnimeObject) => setSingleData(data);
 
   return (

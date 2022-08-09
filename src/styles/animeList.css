@@ -1,3 +1,15 @@
-.animeList_container {
-  border-radius: 5px;
+.anime_list_container {
+  display: flex !important;
+  flex-wrap: wrap;
+
+  justify-content: center;
+
+  margin-top: 0;
+}
+
+.anime_list_pagination {
+  margin-top: 2rem;
+  display: flex;
+
+  justify-content: center;
 }

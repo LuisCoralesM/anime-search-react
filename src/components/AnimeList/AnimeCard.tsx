@@ -1,60 +1,55 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { Grid, ImageListItem, Paper, Typography, Link } from "@mui/material";
+import { Grid, ImageListItem, Link, Paper, Typography } from "@mui/material";
 
 import { SearchContext } from "../../context/context";
-import { IAnimeObject } from "../../types";
+import { IAnimeObject, ISingleAnimeProps } from "../../types";
 import { getAnimeById } from "../../utils/fetchApi";
 
-interface ICardProps {
-  data: IAnimeObject;
-}
-
-const AnimeCard = ({ data }: ICardProps) => {
+const AnimeCard = ({ data }: ISingleAnimeProps) => {
   const searchContext = useContext(SearchContext);
   const navigate = useNavigate();
+
+  function trimText(text: string, length: number = 18) {
+    return text.length < length ? text : text.slice(0, length - 3) + "...";
+  }
 
   async function onClickHandler(
     e: React.MouseEvent<HTMLSpanElement, MouseEvent>
   ) {
     e.preventDefault();
 
+    if (!data) return;
+
     const response = await getAnimeById(data.mal_id);
 
     if (!response.data) return;
 
-    searchContext.setContextSingleData(response.data);
-    localStorage.setItem("singleData", JSON.stringify(response.data));
+    searchContext.setContextSingleData(response.data.data);
+    localStorage.setItem("singleData", JSON.stringify(response.data.data));
+
     navigate("/details");
   }
 
+  if (!data) return <></>;
+
   return (
-    <ImageListItem className="anime_card_container">
+    <ImageListItem className="anime_card_container" onClick={onClickHandler}>
       <Grid container item xs={12}>
         <Paper className="anime_card_paper">
           <img
             src={data.images.jpg.image_url}
             alt={data.title}
             style={{ maxHeight: 300 }}
+            loading="lazy"
           />
           <Typography variant="h5" component="h2">
-            {data.title}
+            {trimText(data.title)}
           </Typography>
           <Typography variant="body2" component="h3">
-            {data.genres.map(
-              (genre, i, arr) =>
-                genre.name + (arr.length - 1 === i ? "" : " - ")
-            )}
+            {data.genres[0]?.name ?? "No Genres"}
           </Typography>
-          <Link
-            component="button"
-            variant="body1"
-            style={{ marginBottom: 0 }}
-            onClick={onClickHandler}
-          >
-            Learn More
-          </Link>
         </Paper>
       </Grid>
     </ImageListItem>

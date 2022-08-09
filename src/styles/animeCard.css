@@ -1,5 +1,7 @@
 .anime_card_container {
-  margin: 10px
+  margin: 10px;
+
+  cursor: pointer;
 }
 
 .anime_card_paper {

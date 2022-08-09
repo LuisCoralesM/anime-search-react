@@ -5,6 +5,7 @@ import {
   Route,
   Routes,
 } from "react-router-dom";
+import { Footer } from "./components/Nav/Footer";
 
 import Nav from "./components/Nav/Nav";
 import SearchProvider from "./context/context";
@@ -12,8 +13,8 @@ import routesObject from "./routes/routes";
 
 const App = () => {
   return (
-    <SearchProvider>
-      <Router>
+    <Router>
+      <SearchProvider>
         <Nav />
         <Routes>
           {routesObject.map((route, index) => (
@@ -25,8 +26,9 @@ const App = () => {
           ))}
           <Route path="*" element={<Navigate to={"/"} />} />
         </Routes>
-      </Router>
-    </SearchProvider>
+        <Footer />
+      </SearchProvider>
+    </Router>
   );
 };
 

@@ -1,21 +1,28 @@
 import React from "react";
 
-import { ImageList } from "@mui/material";
+import { ImageList, Pagination } from "@mui/material";
 
-import { IAnimeObject } from "../../types";
+import { IApiResponse } from "../../types";
 import AnimeCard from "./AnimeCard";
 
 interface IListProps {
-  listData: IAnimeObject[];
+  listData: IApiResponse;
 }
 
 const AnimeList = (props: IListProps) => {
   return (
-    <ImageList className="animeList_container">
-      {props.listData.map((data) => (
-        <AnimeCard key={data.mal_id} data={data} />
-      ))}
-    </ImageList>
+    <section>
+      <ImageList className="anime_list_container">
+        {props.listData.data.map((item) => (
+          <AnimeCard key={item.mal_id} data={item} />
+        ))}
+      </ImageList>
+      <Pagination
+        className="anime_list_pagination"
+        count={props.listData.pagination.last_visible_page}
+        shape="rounded"
+      />
+    </section>
   );
 };
 

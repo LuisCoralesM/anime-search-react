@@ -8,7 +8,7 @@ const Results = () => {
   const [dataExists, setDataExists] = useState<boolean>(true);
 
   useEffect(() => {
-    if (!searchContext.listData || searchContext.listData.length === 0) {
+    if (!searchContext.listData || searchContext.listData.data.length === 0) {
       try {
         const localData = localStorage.getItem("myData");
 
@@ -25,6 +25,8 @@ const Results = () => {
       }
     }
   }, [searchContext.listData]);
+
+  if (!searchContext.listData) return <></>;
 
   return (
     <Box mt={2}>

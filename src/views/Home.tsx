@@ -5,6 +5,7 @@ import { FormControl, Grid, IconButton, Input } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 
 import { SearchContext } from "../context/context";
+import { handleSearch } from "../utils/handleSearch";
 
 const LOGO_IMG =
   "https://www.pngitem.com/pimgs/m/113-1133466_transparent-dragon-ball-xenoverse-png-dragon-ball-z.png";
@@ -15,23 +16,6 @@ const Home = () => {
 
   const [input, setInput] = useState<string>();
   const [hasSearched, setHasSearched] = useState<boolean>(false);
-
-  async function handleSearch(e: React.MouseEvent<HTMLButtonElement>) {
-    e.preventDefault();
-
-    if (!input) return;
-
-    setHasSearched(true);
-
-    const response = await searchContext.getAnime(input);
-
-    if (!response.data) return;
-
-    searchContext.setContextListData(response.data.data);
-    localStorage.setItem("myData", JSON.stringify(response.data.data));
-
-    navigate("/list");
-  }
 
   return (
     <Grid
@@ -59,7 +43,15 @@ const Home = () => {
                 type="submit"
                 color="primary"
                 disabled={!input}
-                onClick={handleSearch}
+                onClick={(e) =>
+                  handleSearch(
+                    e,
+                    input,
+                    setHasSearched,
+                    searchContext,
+                    navigate
+                  )
+                }
               >
                 <SearchIcon />
               </IconButton>

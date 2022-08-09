@@ -7,7 +7,7 @@ export interface IFetchObject {
 }
 
 export interface IFetchSingleObject {
-  data: IAnimeObject | undefined;
+  data: { data: IAnimeObject } | undefined;
   ok: boolean;
 }
 

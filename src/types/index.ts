@@ -150,10 +150,10 @@ export interface IAnimeObject {
 }
 
 export interface IContext {
-  listData: IAnimeObject[];
+  listData: IApiResponse | undefined;
   singleData: IAnimeObject | undefined;
   getAnime: (term: string) => Promise<IFetchObject>;
-  setContextListData: (data: IAnimeObject[]) => void;
+  setContextListData: (data: IApiResponse) => void;
   setContextSingleData: (data: IAnimeObject) => void;
 }
 
@@ -164,11 +164,15 @@ export interface Pagination {
   items: {
     count: number;
     total: number;
-    per_page: number  ;
+    per_page: number;
   };
 }
 
 export interface IApiResponse {
   pagination: Pagination;
   data: IAnimeObject[];
+}
+
+export interface ISingleAnimeProps {
+  data: IAnimeObject | undefined;
 }

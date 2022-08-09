@@ -17,6 +17,10 @@ const LOGO_IMG =
   "https://www.pngitem.com/pimgs/m/113-1133466_transparent-dragon-ball-xenoverse-png-dragon-ball-z.png";
 
 const Home = () => {
+  // MAYBE CHANGE ALL THE HOME PAGE TO SHOW TOP ANIME
+  // RECENT ANIME
+  // ETC
+
   const navigate = useNavigate();
   const searchContext = useContext(SearchContext);
 
@@ -25,7 +29,6 @@ const Home = () => {
 
   return (
     <Grid
-      container
       direction="column"
       justifyContent="center"
       alignContent="center"
@@ -33,9 +36,9 @@ const Home = () => {
     >
       <Grid item>
         <Grid item>
-          <img alt="logo" src={LOGO_IMG} height={420} />
+          <img alt="logo" src={LOGO_IMG} width={300} />
         </Grid>
-        <Grid item>
+        <Grid>
           <form className="home_form">
             <FormControl className="home_form_control">
               <Input

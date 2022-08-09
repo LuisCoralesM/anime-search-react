@@ -3,6 +3,7 @@ import React from "react";
 import { Grid, Link, Paper, Typography } from "@mui/material";
 
 import { ISingleAnimeProps } from "../../types";
+import { separateItems } from "../../utils/separateItems";
 
 const SingleAnime = ({ data }: ISingleAnimeProps) => {
   return (
@@ -31,13 +32,27 @@ const SingleAnime = ({ data }: ISingleAnimeProps) => {
             </Typography>
             <Typography variant="h6" component="h2">
               Genres:{" "}
-              {data?.genres.map(
-                (genre, i, arr) =>
-                  genre.name + (arr.length - 1 === i ? "" : " - ")
-              )}
+              {data?.genres.length !== 0
+                ? data?.genres.map(separateItems)
+                : "N/A"}
+            </Typography>
+            <Typography variant="h6" component="h2">
+              Demographics:{" "}
+              {data?.demographics.length !== 0
+                ? data?.demographics.map(separateItems)
+                : "N/A"}
+            </Typography>
+            <Typography variant="h6" component="h5">
+              Studios:{" "}
+              {data?.studios.length !== 0
+                ? data?.studios.map(separateItems)
+                : "N/A"}
             </Typography>
             <Typography variant="h6" component="h2">
               Status: {data?.status}
+            </Typography>
+            <Typography variant="h6" component="h2">
+              Aired: {data?.aired.string}
             </Typography>
             <Typography variant="h6" component="h2">
               Score: {data?.score}
@@ -45,8 +60,14 @@ const SingleAnime = ({ data }: ISingleAnimeProps) => {
             <Typography variant="h6" component="h2">
               Episodes: {data?.episodes}
             </Typography>
+            <Typography variant="h6" component="h2">
+              Duration: {data?.duration}
+            </Typography>
             <Typography variant="h6" component="h5">
               Rating: {data?.rating}
+            </Typography>
+            <Typography variant="h6" component="h5">
+              Rank: {data?.rank ?? "Unranked"}
             </Typography>
             <Link component="button" variant="body1" href={data?.url}>
               My Anime List

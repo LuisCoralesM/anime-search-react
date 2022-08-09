@@ -13,15 +13,7 @@ import { SearchContext } from "../../context/context";
 import { handleSearch } from "../../utils/handleSearch";
 
 import CircularProgress from "@mui/material/CircularProgress";
-import { IAnimeObject, IApiResponse } from "../../types";
-
-export function CircularIndeterminate() {
-  return (
-    <Box sx={{ display: "flex" }}>
-      <CircularProgress color="inherit" />
-    </Box>
-  );
-}
+import { IApiResponse } from "../../types";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -121,7 +113,7 @@ export default function Nav() {
               />
             </form>
           </Search>
-          {hasSearched ? <CircularIndeterminate /> : <></>}
+          {hasSearched ? <CircularProgress color="inherit" /> : <></>}
         </Toolbar>
       </AppBar>
     </Box>

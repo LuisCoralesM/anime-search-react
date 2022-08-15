@@ -7,8 +7,6 @@
   display: flex;
 
   justify-content: space-between;
-  justify-items: flex-end;
-  align-items: flex-end;
 }
 
 .nav_logo_box {
@@ -18,4 +16,8 @@
   gap: 1rem;
 
   cursor: pointer;
+}
+
+.nav_search {
+  display: flex;
 }

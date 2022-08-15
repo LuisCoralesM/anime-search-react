@@ -1,19 +1,16 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { Grid, ImageListItem, Link, Paper, Typography } from "@mui/material";
+import { Grid, ImageListItem, Paper, Typography } from "@mui/material";
 
 import { SearchContext } from "../../context/context";
-import { IAnimeObject, ISingleAnimeProps } from "../../types";
+import { ISingleAnimeProps } from "../../types";
 import { getAnimeById } from "../../utils/fetchApi";
+import { trimText } from "../../utils/trimText";
 
 const AnimeCard = ({ data }: ISingleAnimeProps) => {
   const searchContext = useContext(SearchContext);
   const navigate = useNavigate();
-
-  function trimText(text: string, length: number = 18) {
-    return text.length < length ? text : text.slice(0, length - 3) + "...";
-  }
 
   async function onClickHandler(
     e: React.MouseEvent<HTMLSpanElement, MouseEvent>
@@ -32,23 +29,21 @@ const AnimeCard = ({ data }: ISingleAnimeProps) => {
     navigate("/details");
   }
 
-  if (!data) return <></>;
-
   return (
     <ImageListItem className="anime_card_container" onClick={onClickHandler}>
       <Grid container item xs={12}>
         <Paper className="anime_card_paper">
           <img
-            src={data.images.jpg.image_url}
-            alt={data.title}
+            src={data?.images.jpg.image_url}
+            alt={data?.title}
             style={{ maxHeight: 300 }}
             loading="lazy"
           />
           <Typography variant="h5" component="h2">
-            {trimText(data.title)}
+            {trimText(data?.title)}
           </Typography>
           <Typography variant="body2" component="h3">
-            {data.genres[0]?.name ?? "No Genres"}
+            {data?.genres[0]?.name ?? "No Genres"}
           </Typography>
         </Paper>
       </Grid>

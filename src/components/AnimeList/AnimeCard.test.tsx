@@ -9,7 +9,6 @@ describe("Anime Card component", () => {
     render(<AnimeCard data={singleDataMock} />);
 
     expect(screen.getByText("Naruto")).toBeTruthy();
-    expect(screen.getByText("Action - Adventure - Fantasy")).toBeTruthy();
-    expect(screen.getByRole("button")).toHaveTextContent("Learn More");
+    expect(screen.getByText("Action")).toBeTruthy();
   });
 });

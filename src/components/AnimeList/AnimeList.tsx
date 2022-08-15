@@ -13,9 +13,12 @@ const AnimeList = (props: IListProps) => {
   return (
     <section>
       <ImageList className="anime_list_container">
-        {props.listData.data.map((item) => (
-          <AnimeCard key={item.mal_id} data={item} />
-        ))}
+        {props.listData.data
+          .filter((item) => item.popularity > 0)
+          .sort((a, b) => a.popularity - b.popularity)
+          .map((item) => (
+            <AnimeCard key={item.mal_id} data={item} />
+          ))}
       </ImageList>
       <Pagination
         className="anime_list_pagination"

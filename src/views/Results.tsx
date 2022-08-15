@@ -24,13 +24,15 @@ const Results = () => {
         setDataExists(false);
       }
     }
-  }, [searchContext.listData]);
-
-  if (!searchContext.listData) return <></>;
+  }, []);
 
   return (
     <Box mt={2}>
-      {(dataExists && <AnimeList listData={searchContext.listData} />) || (
+      {dataExists &&
+      searchContext.listData !== undefined &&
+      searchContext.listData.data.length !== 0 ? (
+        <AnimeList listData={searchContext.listData} />
+      ) : (
         <Typography variant="h4">Data does not exist</Typography>
       )}
     </Box>

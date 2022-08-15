@@ -1,7 +1,13 @@
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { FormControl, Grid, IconButton, Input } from "@mui/material";
+import {
+  CircularProgress,
+  FormControl,
+  Grid,
+  IconButton,
+  Input,
+} from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 
 import { SearchContext } from "../context/context";
@@ -11,6 +17,10 @@ const LOGO_IMG =
   "https://www.pngitem.com/pimgs/m/113-1133466_transparent-dragon-ball-xenoverse-png-dragon-ball-z.png";
 
 const Home = () => {
+  // MAYBE CHANGE ALL THE HOME PAGE TO SHOW TOP ANIME
+  // RECENT ANIME
+  // ETC
+
   const navigate = useNavigate();
   const searchContext = useContext(SearchContext);
 
@@ -27,11 +37,11 @@ const Home = () => {
     >
       <Grid item>
         <Grid item>
-          <img alt="logo" src={LOGO_IMG} height={420} />
+          <img alt="logo" src={LOGO_IMG} width={300} />
         </Grid>
-        <Grid item>
+        <Grid>
           <form className="home_form">
-            <FormControl className="home_formControl">
+            <FormControl className="home_form_control">
               <Input
                 className="home_input"
                 placeholder="Search for your fave anime"
@@ -39,7 +49,7 @@ const Home = () => {
                 onChange={(e) => setInput(e.target.value)}
               />
               <IconButton
-                className="home_iconButton"
+                className="home_icon_button"
                 type="submit"
                 color="primary"
                 disabled={!input}
@@ -55,9 +65,13 @@ const Home = () => {
               >
                 <SearchIcon />
               </IconButton>
+              {hasSearched ? (
+                <CircularProgress color="inherit" data-testid="loader" />
+              ) : (
+                <></>
+              )}
             </FormControl>
           </form>
-          {hasSearched ? <>searching</> : ""}
         </Grid>
       </Grid>
     </Grid>

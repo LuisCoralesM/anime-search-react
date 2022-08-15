@@ -1,6 +1,4 @@
-import Home from "../views/Home";
-import Results from "../views/Results";
-import SingleView from "../views/SingleView";
+import React from "react";
 
 interface IRoute {
   path: string;
@@ -10,15 +8,15 @@ interface IRoute {
 const routesObject: IRoute[] = [
   {
     path: "/",
-    component: Home,
+    component: React.lazy(() => import("../views/Home")),
   },
   {
     path: "/list",
-    component: Results,
+    component: React.lazy(() => import("../views/Results")),
   },
   {
     path: "/details",
-    component: SingleView,
+    component: React.lazy(() => import("../views/SingleView")),
   },
 ];
 

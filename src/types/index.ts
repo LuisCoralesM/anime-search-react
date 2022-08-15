@@ -38,15 +38,15 @@ export interface Title {
 }
 
 export interface From {
-  day: number;
-  month: number;
-  year: number;
+  day: number | null;
+  month: number | null;
+  year: number | null;
 }
 
 export interface To {
-  day: number;
-  month: number;
-  year: number;
+  day: number | null;
+  month: number | null;
+  year: number | null;
 }
 
 export interface Prop {
@@ -55,17 +55,17 @@ export interface Prop {
 }
 
 export interface Aired {
-  from: Date;
-  to: Date;
+  from: Date | string | null;
+  to: Date | string | null;
   prop: Prop;
   string: string;
 }
 
 export interface Broadcast {
-  day: string;
-  time: string;
-  timezone: string;
-  string: string;
+  day: string | null;
+  time: string | null;
+  timezone: string | null;
+  string: string | null;
 }
 
 export interface Producer {
@@ -118,12 +118,12 @@ export interface IAnimeObject {
   approved: boolean;
   titles: Title[];
   title: string;
-  title_english: string;
+  title_english: string | null;
   title_japanese: string;
   title_synonyms: string[];
   type: string;
   source: string;
-  episodes: number;
+  episodes: number | null;
   status: string;
   airing: boolean;
   aired: Aired;
@@ -136,9 +136,9 @@ export interface IAnimeObject {
   members: number;
   favorites: number;
   synopsis: string;
-  background: string;
-  season: string;
-  year: number;
+  background: string | null;
+  season: string | null;
+  year: number | null;
   broadcast: Broadcast;
   producers: Producer[];
   licensors: Licensor[];

@@ -4,8 +4,17 @@ import { listDataMock } from "./listDataMock";
 import { singleDataMock } from "./singleDataMock";
 
 export const handlers = [
+  rest.get(API_URL_ANIME + "/:id", (req, res, ctx) => {
+    const id = Number(req.params.id);
+    const data = { ...singleDataMock, mal_id: id };
+    return res(ctx.status(200), ctx.json(data));
+  }),
+
   rest.get(API_URL_ANIME, (req, res, ctx) => {
-    const params = req.params.q;
-    return res(ctx.status(200), ctx.json(listDataMock));
+    const searchParam = req.params.q;
+
+    return searchParam === "naruto"
+      ? res(ctx.status(200), ctx.json(listDataMock))
+      : res(ctx.status(200), ctx.json(listDataMock));
   }),
 ];

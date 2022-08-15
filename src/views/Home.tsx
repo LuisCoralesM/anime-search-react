@@ -29,6 +29,7 @@ const Home = () => {
 
   return (
     <Grid
+      container
       direction="column"
       justifyContent="center"
       alignContent="center"
@@ -64,7 +65,11 @@ const Home = () => {
               >
                 <SearchIcon />
               </IconButton>
-              {hasSearched ? <CircularProgress color="inherit" /> : <></>}
+              {hasSearched ? (
+                <CircularProgress color="inherit" data-testid="loader" />
+              ) : (
+                <></>
+              )}
             </FormControl>
           </form>
         </Grid>

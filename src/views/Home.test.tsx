@@ -1,5 +1,5 @@
 import React from "react";
-import { render, fireEvent, waitFor, screen } from "../tests/utils";
+import { render, fireEvent, waitFor, screen, cleanup } from "../tests/utils";
 import "@testing-library/jest-dom";
 import Home from "./Home";
 
@@ -14,6 +14,8 @@ const setup = () => {
 };
 
 describe("Home view", () => {
+  afterEach(cleanup);
+
   test("renders the view", async () => {
     const { input } = setup();
     expect(input).toBeTruthy();
@@ -30,12 +32,12 @@ describe("Home view", () => {
   });
 
   test("search for an anime", async () => {
-    const { input, button } = setup();
+    const { input, button, utils } = setup();
 
     fireEvent.change(input, { target: { value: "" } });
     fireEvent.change(input, { target: { value: "naruto" } });
     fireEvent.click(button);
 
-    expect(screen.getByText("searching")).toBeTruthy();
+    await waitFor(() => expect(utils.getByTestId("loader")).toBeTruthy());
   });
 });

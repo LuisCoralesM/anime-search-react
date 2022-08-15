@@ -78,6 +78,21 @@ const SingleAnime = ({ data }: ISingleAnimeProps) => {
           </Paper>
         </Grid>
       </Grid>
+      <Grid
+        container
+        spacing={10}
+        direction="column"
+        justifyContent="center"
+        alignContent="center"
+        alignItems="center"
+        className="single_anime_synopsis"
+      >
+        <Grid item className="single_anime_synopsis">
+          <Typography variant="body1" component="p">
+            {data?.synopsis}
+          </Typography>
+        </Grid>
+      </Grid>
     </section>
   );
 };

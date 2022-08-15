@@ -14,6 +14,7 @@ const AnimeList = (props: IListProps) => {
     <section>
       <ImageList className="anime_list_container">
         {props.listData.data
+          .filter((item) => item.popularity > 0)
           .sort((a, b) => a.popularity - b.popularity)
           .map((item) => (
             <AnimeCard key={item.mal_id} data={item} />

@@ -55,7 +55,7 @@ const SingleAnime = ({ data }: ISingleAnimeProps) => {
               Aired: {data?.aired.string}
             </Typography>
             <Typography variant="h6" component="h2">
-              Score: {data?.score}
+              Score: {data?.score ?? "None"}
             </Typography>
             <Typography variant="h6" component="h2">
               Episodes: {data?.episodes}
@@ -64,10 +64,13 @@ const SingleAnime = ({ data }: ISingleAnimeProps) => {
               Duration: {data?.duration}
             </Typography>
             <Typography variant="h6" component="h5">
-              Rating: {data?.rating}
+              Rating: {data?.rating ?? "N/A"}
             </Typography>
             <Typography variant="h6" component="h5">
               Rank: {data?.rank ?? "Unranked"}
+            </Typography>
+            <Typography variant="h6" component="h5">
+              Popularity: {data?.popularity ?? "N/A"}
             </Typography>
             <Link component="button" variant="body1" href={data?.url}>
               My Anime List

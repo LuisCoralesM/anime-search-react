@@ -19,7 +19,7 @@ const LOGO_IMG =
 const Home = () => {
   // MAYBE CHANGE ALL THE HOME PAGE TO SHOW TOP ANIME
   // RECENT ANIME
-  // ETC
+  // ETC 
 
   const navigate = useNavigate();
   const searchContext = useContext(SearchContext);

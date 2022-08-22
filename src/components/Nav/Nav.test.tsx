@@ -4,9 +4,19 @@ import "@testing-library/jest-dom";
 import Nav from "./Nav";
 
 describe("Nav component", () => {
-  test("renders the nav", async () => {
+  it("renders the nav", async () => {
     render(<Nav />);
 
-    expect(await screen.findByText("My Anime App")).toBeTruthy();
+    screen.getByText("My Anime App");
+  });
+
+  it("search on the nav bar", async () => {
+    render(<Nav />);
+
+    const input = screen.getByLabelText("search");
+    fireEvent.change(input, { target: { value: "naruto" } });
+    fireEvent.submit(input);
+
+    screen.getByTestId("loader");
   });
 });

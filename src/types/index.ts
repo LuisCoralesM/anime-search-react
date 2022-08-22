@@ -1,5 +1,3 @@
-import { IFetchObject } from "../utils/fetchApi";
-
 export interface Jpg {
   image_url: string;
   small_image_url: string;
@@ -149,12 +147,29 @@ export interface IAnimeObject {
   demographics: Demographic[];
 }
 
+export interface IFetchObject {
+  data: IApiResponse | undefined;
+  ok: boolean;
+}
+
+export interface IFetchSingleObject {
+  data: { data: IAnimeObject } | undefined;
+  ok: boolean;
+}
+
 export interface IContext {
   listData: IApiResponse | undefined;
   singleData: IAnimeObject | undefined;
+  topData: IApiResponse | undefined;
+  currentData: IApiResponse | undefined;
   getAnime: (term: string) => Promise<IFetchObject>;
+  getAnimeById: (id: number) => Promise<IFetchSingleObject>;
+  getTopAnime: () => Promise<IFetchObject>;
+  getCurrentSeasonAnime: () => Promise<IFetchObject>;
   setContextListData: (data: IApiResponse) => void;
   setContextSingleData: (data: IAnimeObject) => void;
+  setContextTopData: (data: IApiResponse) => void;
+  setContextCurrentData: (data: IApiResponse) => void;
 }
 
 export interface Pagination {

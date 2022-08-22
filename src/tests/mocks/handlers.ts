@@ -1,5 +1,5 @@
 import { rest } from "msw";
-import { API_URL_ANIME } from "../../utils/apiUrl";
+import { API_URL, API_URL_ANIME } from "../../utils/apiUrl";
 import { listDataMock } from "./listDataMock";
 import { singleDataMock } from "./singleDataMock";
 
@@ -16,5 +16,13 @@ export const handlers = [
     return searchParam === "naruto"
       ? res(ctx.status(200), ctx.json(listDataMock))
       : res(ctx.status(200), ctx.json(listDataMock));
+  }),
+
+  rest.get(API_URL + "top/anime", (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json(listDataMock));
+  }),
+
+  rest.get(API_URL + "seasons/now", (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json(listDataMock));
   }),
 ];

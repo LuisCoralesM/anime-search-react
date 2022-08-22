@@ -1,6 +1,7 @@
-import { RenderOptions, render } from "@testing-library/react";
-import { BrowserRouter } from "react-router-dom";
 import React, { ReactElement } from "react";
+import { BrowserRouter } from "react-router-dom";
+
+import { render, RenderOptions } from "@testing-library/react";
 
 function AllTheProviders({ children }: { children: ReactElement }) {
   return <BrowserRouter>{children}</BrowserRouter>;

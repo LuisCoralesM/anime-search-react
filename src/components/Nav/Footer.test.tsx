@@ -5,10 +5,10 @@ import React from "react";
 import { fireEvent, render, screen, waitFor } from "../../tests/utils";
 import { Footer } from "./Footer";
 
-describe("Results view", () => {
-  test("renders the Results view", async () => {
+describe("Footer component", () => {
+  it("renders the Footer", async () => {
     render(<Footer />);
 
-    expect(await screen.findByText("This is a footer")).toBeInTheDocument();
+    screen.getByText("This is a footer");
   });
 });

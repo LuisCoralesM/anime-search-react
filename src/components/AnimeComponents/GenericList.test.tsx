@@ -4,11 +4,11 @@ import React from "react";
 
 import { listDataMock } from "../../tests/mocks/listDataMock";
 import { fireEvent, render, screen, waitFor } from "../../tests/utils";
-import AnimeList from "./AnimeList";
+import GenericList from "./GenericList";
 
-describe("AnimeList component", () => {
-  it("renders the AnimeList component", async () => {
-    render(<AnimeList listData={listDataMock} />);
+describe("GenericList component", () => {
+  it("renders the GenericList component", async () => {
+    render(<GenericList animeData={listDataMock} />);
 
     screen.getByText("Naruto");
     screen.getAllByText("Boruto: Naruto ...");

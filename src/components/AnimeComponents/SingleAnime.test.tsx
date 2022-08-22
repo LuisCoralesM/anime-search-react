@@ -1,13 +1,15 @@
 import React from "react";
 import { render, fireEvent, waitFor, screen } from "../../tests/utils";
 import "@testing-library/jest-dom";
-import Results from "../../views/Results";
+import SingleAnime from "./SingleAnime";
+import { singleDataMock } from "../../tests/mocks/singleDataMock";
 
-describe("Results view", () => {
-  test("renders the Results view", async () => {
-    render(<Results />);
+describe("SingleAnime component", () => {
+  it("renders the SingleAnime component", async () => {
+    render(<SingleAnime data={singleDataMock} />);
 
-    // expect(await screen.findByText("Data")).toHaveTextContent("Data");
-    expect(true).toBe(true);
+    screen.getByText("Naruto");
+    screen.getByText("Genres: Action - Adventure - Fantasy");
+    screen.getByText("Demographics: Shounen");
   });
 });

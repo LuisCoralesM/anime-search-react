@@ -127,7 +127,11 @@ export default function Nav() {
               />
             </form>
           </Search>
-          {hasSearched ? <CircularProgress color="inherit" /> : <></>}
+          {hasSearched ? (
+            <CircularProgress data-testid="loader" color="inherit" />
+          ) : (
+            <></>
+          )}
         </Box>
       </Toolbar>
     </AppBar>

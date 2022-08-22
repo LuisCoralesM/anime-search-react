@@ -7,6 +7,7 @@ import GenericList from "../components/AnimeComponents/GenericList";
 import Spinner from "../components/Loading/Spinner";
 import { SearchContext } from "../context";
 
+
 const Home = () => {
   const navigate = useNavigate();
   const searchContext = useContext(SearchContext);
@@ -23,7 +24,6 @@ const Home = () => {
   useEffect(() => {
     async function fetchTopData() {
       const response = await searchContext.getTopAnime();
-      console.log(response);
 
       if (!response.data) return;
 
@@ -32,7 +32,6 @@ const Home = () => {
     }
     async function fetchCurrentData() {
       const response = await searchContext.getCurrentSeasonAnime();
-      console.log(response);
 
       if (!response.data) return;
 

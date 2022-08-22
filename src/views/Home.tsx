@@ -11,10 +11,13 @@ const Home = () => {
   const navigate = useNavigate();
   const searchContext = useContext(SearchContext);
 
-  async function handleOnClick(e: React.MouseEvent<HTMLButtonElement>) {
+  async function handleOnClick(
+    e: React.MouseEvent<HTMLButtonElement>,
+    path: string
+  ) {
     e.preventDefault();
 
-    navigate("/top");
+    navigate(path);
   }
 
   useEffect(() => {
@@ -42,34 +45,38 @@ const Home = () => {
 
   return (
     <>
-      <Box>
+      <Box className="home_lists_containeras">
         {searchContext.topData && searchContext.topData.data.length !== 0 ? (
           <>
             <h2>Top Anime</h2>
-            <button onClick={handleOnClick}>See full list</button>
             <GenericList
               animeData={{
                 data: searchContext.topData.data.slice(0, 5),
                 pagination: searchContext.topData.pagination,
               }}
             />
+            <button onClick={(e) => handleOnClick(e, "/top")}>
+              See full list
+            </button>
           </>
         ) : (
           <Spinner />
         )}
       </Box>
-      <Box>
+      <Box className="home_lists_container">
         {searchContext.currentData &&
         searchContext.currentData.data.length !== 0 ? (
           <>
             <h2>Current Season Anime</h2>
-            <button onClick={handleOnClick}>See full list</button>
             <GenericList
               animeData={{
                 data: searchContext.currentData.data.slice(0, 5),
                 pagination: searchContext.currentData.pagination,
               }}
             />
+            <button onClick={(e) => handleOnClick(e, "/current")}>
+              See full list
+            </button>
           </>
         ) : (
           <Spinner />

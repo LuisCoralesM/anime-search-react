@@ -10,15 +10,17 @@ interface IListProps {
 }
 
 const AnimeList = (props: IListProps) => {
+  const itemsPop = props.listData.data.filter((item) => item.popularity > 0);
+  const itemsZero = props.listData.data.filter((item) => item.popularity === 0);
+  const newItems = itemsPop
+    .sort((a, b) => a.popularity - b.popularity)
+    .concat(itemsZero);
   return (
     <section>
       <ImageList className="anime_list_container">
-        {props.listData.data
-          .filter((item) => item.popularity > 0)
-          .sort((a, b) => a.popularity - b.popularity)
-          .map((item) => (
-            <AnimeCard key={item.mal_id} data={item} />
-          ))}
+        {newItems.map((item) => (
+          <AnimeCard key={item.mal_id} data={item} />
+        ))}
       </ImageList>
       <Pagination
         className="anime_list_pagination"

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import { Grid, ImageListItem, Paper, Typography } from "@mui/material";
 
-import { SearchContext } from "../../context/context";
+import { SearchContext } from "../../context";
 import { ISingleAnimeProps } from "../../types";
 import { getAnimeById } from "../../utils/fetchApi";
 import { trimText } from "../../utils/trimText";

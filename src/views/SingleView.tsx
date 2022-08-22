@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Typography } from "@mui/material";
 
 import SingleAnime from "../components/AnimeList/SingleAnime";
-import { SearchContext } from "../context/context";
+import { SearchContext } from "../context";
 
 const SingleView = () => {
   const searchContext = useContext(SearchContext);

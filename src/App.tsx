@@ -9,7 +9,7 @@ import Spinner from "./components/Loading/Spinner";
 import { Footer } from "./components/Nav/Footer";
 
 import Nav from "./components/Nav/Nav";
-import SearchProvider from "./context/context";
+import SearchProvider from "./context";
 import routesObject from "./routes";
 
 const App = () => {

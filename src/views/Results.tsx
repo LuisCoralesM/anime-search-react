@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import AnimeList from "../components/AnimeList/AnimeList";
-import { SearchContext } from "../context/context";
+import { SearchContext } from "../context";
 import { Box, Typography } from "@mui/material";
 
 const Results = () => {

@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { NavigateFunction, useNavigate } from "react-router-dom";
 
 import SearchIcon from "@mui/icons-material/Search";
 import AppBar from "@mui/material/AppBar";
@@ -9,11 +9,10 @@ import { alpha, styled } from "@mui/material/styles";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 
-import { SearchContext } from "../../context/context";
-import { handleSearch } from "../../utils/handleSearch";
+import { SearchContext } from "../../context";
 
 import CircularProgress from "@mui/material/CircularProgress";
-import { IApiResponse } from "../../types";
+import { IApiResponse, IContext } from "../../types";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -68,6 +67,29 @@ export default function Nav() {
   function onClickHandler(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
     e.preventDefault();
     navigate("/");
+  }
+
+  async function handleSearch(
+    e: React.MouseEvent<HTMLButtonElement> | React.FormEvent<HTMLFormElement>,
+    input: string | undefined,
+    setHasSearched: React.Dispatch<React.SetStateAction<boolean>>,
+    searchContext: IContext,
+    navigate: NavigateFunction
+  ) {
+    e.preventDefault();
+
+    if (!input) return;
+
+    setHasSearched(true);
+
+    const response = await searchContext.getAnime(input);
+
+    if (!response.data) return;
+
+    searchContext.setContextListData(response.data);
+    localStorage.setItem("myData", JSON.stringify(response.data));
+
+    navigate("/list");
   }
 
   useEffect(() => {

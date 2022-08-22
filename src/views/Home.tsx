@@ -1,23 +1,24 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { Grid, ImageList, Typography } from "@mui/material";
+import { Box, ImageList, Typography } from "@mui/material";
 
+import GenericList from "../components/AnimeComponents/GenericList";
+import Spinner from "../components/Loading/Spinner";
 import { SearchContext } from "../context";
-import AnimeCard from "../components/AnimeList/AnimeCard";
 
 const Home = () => {
-  // MAYBE CHANGE ALL THE HOME PAGE TO SHOW TOP ANIME
-  // RECENT ANIME
-  // ETC
   const navigate = useNavigate();
   const searchContext = useContext(SearchContext);
 
-  const [input, setInput] = useState<string>();
-  const [hasSearched, setHasSearched] = useState<boolean>(false);
+  async function handleOnClick(e: React.MouseEvent<HTMLButtonElement>) {
+    e.preventDefault();
+
+    navigate("/top");
+  }
 
   useEffect(() => {
-    async function fetchData() {
+    async function fetchTopData() {
       const response = await searchContext.getTopAnime();
       console.log(response);
 
@@ -26,28 +27,55 @@ const Home = () => {
       searchContext.setContextTopData(response.data);
       localStorage.setItem("topData", JSON.stringify(response.data));
     }
-    fetchData();
+    async function fetchCurrentData() {
+      const response = await searchContext.getCurrentSeasonAnime();
+      console.log(response);
+
+      if (!response.data) return;
+
+      searchContext.setContextCurrentData(response.data);
+      localStorage.setItem("currentData", JSON.stringify(response.data));
+    }
+    fetchTopData();
+    fetchCurrentData();
   }, []);
 
   return (
-    <Grid
-      container
-      direction="column"
-      justifyContent="center"
-      alignContent="center"
-      alignItems="center"
-    >
-      <Grid item>
-        <Grid item>
-          <Typography>See full list</Typography>
-          <ImageList className="anime_list_container">
-            {/* {searchContext.topData.data.map((item) => (
-              <AnimeCard key={item.mal_id} data={item} />
-            ))} */}
-          </ImageList>
-        </Grid>
-      </Grid>
-    </Grid>
+    <>
+      <Box>
+        {searchContext.topData && searchContext.topData.data.length !== 0 ? (
+          <>
+            <h2>Top Anime</h2>
+            <button onClick={handleOnClick}>See full list</button>
+            <GenericList
+              animeData={{
+                data: searchContext.topData.data.slice(0, 5),
+                pagination: searchContext.topData.pagination,
+              }}
+            />
+          </>
+        ) : (
+          <Spinner />
+        )}
+      </Box>
+      <Box>
+        {searchContext.currentData &&
+        searchContext.currentData.data.length !== 0 ? (
+          <>
+            <h2>Current Season Anime</h2>
+            <button onClick={handleOnClick}>See full list</button>
+            <GenericList
+              animeData={{
+                data: searchContext.currentData.data.slice(0, 5),
+                pagination: searchContext.currentData.pagination,
+              }}
+            />
+          </>
+        ) : (
+          <Spinner />
+        )}
+      </Box>
+    </>
   );
 };
 

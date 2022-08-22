@@ -1,0 +1,8 @@
+.top_anime_container {
+  display: flex !important;
+  flex-wrap: wrap;
+
+  justify-content: center;
+
+  margin-top: 0;
+}

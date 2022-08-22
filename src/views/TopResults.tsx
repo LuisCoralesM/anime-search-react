@@ -2,20 +2,20 @@ import React, { useContext, useEffect, useState } from "react";
 
 import { Typography } from "@mui/material";
 
-import SingleAnime from "../components/AnimeComponents/SingleAnime";
+import GenericList from "../components/AnimeComponents/GenericList";
 import { SearchContext } from "../context";
 
-const SingleView = () => {
+const TopResults = () => {
   const searchContext = useContext(SearchContext);
   const [dataExists, setDataExists] = useState(true);
 
   useEffect(() => {
     if (
-      searchContext.singleData === undefined ||
-      Object.keys(searchContext.singleData).length === 0
+      searchContext.topData === undefined ||
+      Object.keys(searchContext.topData).length === 0
     ) {
       try {
-        const localData = localStorage.getItem("singleData");
+        const localData = localStorage.getItem("topData");
 
         if (typeof localData !== "string") throw new Error();
 
@@ -23,7 +23,7 @@ const SingleView = () => {
 
         if (parsedData.length === 0) throw new Error();
 
-        searchContext.setContextSingleData(parsedData);
+        searchContext.setContextTopData(parsedData);
         setDataExists(true);
       } catch (error) {
         setDataExists(false);
@@ -33,13 +33,15 @@ const SingleView = () => {
 
   return (
     <div>
-      {dataExists ? (
-        <SingleAnime data={searchContext.singleData} />
+      {dataExists &&
+      searchContext.topData !== undefined &&
+      searchContext.topData.data.length !== 0 ? (
+        <GenericList animeData={searchContext.topData} />
       ) : (
-        <Typography>No data exists for this Anime</Typography>
+        <Typography variant="h4">Top anime data cannot be fetched</Typography>
       )}
     </div>
   );
 };
 
-export default SingleView;
+export default TopResults;

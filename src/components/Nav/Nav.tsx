@@ -70,11 +70,7 @@ export default function Nav() {
   }
 
   async function handleSearch(
-    e: React.MouseEvent<HTMLButtonElement> | React.FormEvent<HTMLFormElement>,
-    input: string | undefined,
-    setHasSearched: React.Dispatch<React.SetStateAction<boolean>>,
-    searchContext: IContext,
-    navigate: NavigateFunction
+    e: React.MouseEvent<HTMLButtonElement> | React.FormEvent<HTMLFormElement>
   ) {
     e.preventDefault();
 
@@ -120,11 +116,7 @@ export default function Nav() {
         </Box>
         <Box className="nav_search">
           <Search>
-            <form
-              onSubmit={(e) =>
-                handleSearch(e, input, setHasSearched, searchContext, navigate)
-              }
-            >
+            <form onSubmit={handleSearch}>
               <SearchIconWrapper>
                 <SearchIcon />
               </SearchIconWrapper>

@@ -18,6 +18,10 @@ const routesObject: IRoute[] = [
     path: "/details",
     component: React.lazy(() => import("../views/SingleView")),
   },
+  {
+    path: "/top",
+    component: React.lazy(() => import("../views/TopResults")),
+  },
 ];
 
 export default routesObject;

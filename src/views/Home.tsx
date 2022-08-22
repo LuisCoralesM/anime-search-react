@@ -45,7 +45,7 @@ const Home = () => {
 
   return (
     <>
-      <Box className="home_lists_containeras">
+      <Box className="home_lists_container">
         {searchContext.topData && searchContext.topData.data.length !== 0 ? (
           <>
             <h2>Top Anime</h2>

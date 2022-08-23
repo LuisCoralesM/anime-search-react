@@ -12,7 +12,7 @@ import Typography from "@mui/material/Typography";
 import { SearchContext } from "../../context";
 
 import CircularProgress from "@mui/material/CircularProgress";
-import { IApiResponse, IContext } from "../../types";
+import { IApiResponse } from "../../types";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -96,7 +96,7 @@ export default function Nav() {
   }, [searchContext.listData]);
 
   return (
-    <AppBar position="static" style={{ borderRadius: "4px" }}>
+    <AppBar position="static" style={{ borderRadius: "0px" }}>
       <Toolbar className="nav_bar">
         <Box className="nav_logo_box" onClick={onClickHandler}>
           <img

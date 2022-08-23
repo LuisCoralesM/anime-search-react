@@ -4,12 +4,19 @@
 }
 
 body {
+  position: relative;
+  min-height: 100vh;
+
   margin: 0;
   background-color: white;
+
 }
 
 section {
   padding: 1rem;
-  margin-top: 0.4rem;
-  background-color: antiquewhite;
+  background-color: lightgray;
+}
+
+#app {
+  padding-bottom: 2.5rem;
 }

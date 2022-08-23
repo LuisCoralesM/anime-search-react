@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 
-import { Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 import GenericList from "../components/AnimeComponents/GenericList";
 import { SearchContext } from "../context";
@@ -32,7 +32,7 @@ const CurrentResults = () => {
   }, [searchContext]);
 
   return (
-    <div>
+    <Box>
       {dataExists &&
       searchContext.currentData !== undefined &&
       searchContext.currentData.data.length !== 0 ? (
@@ -42,7 +42,7 @@ const CurrentResults = () => {
           Current season anime data cannot be fetched
         </Typography>
       )}
-    </div>
+    </Box>
   );
 };
 

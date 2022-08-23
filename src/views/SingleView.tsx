@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 
-import { Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 import SingleAnime from "../components/AnimeComponents/SingleAnime";
 import { SearchContext } from "../context";
@@ -32,13 +32,13 @@ const SingleView = () => {
   }, [searchContext]);
 
   return (
-    <div>
+    <Box>
       {dataExists ? (
         <SingleAnime data={searchContext.singleData} />
       ) : (
         <Typography>No data exists for this Anime</Typography>
       )}
-    </div>
+    </Box>
   );
 };
 

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 
-import { Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 import GenericList from "../components/AnimeComponents/GenericList";
 import { SearchContext } from "../context";
@@ -32,7 +32,7 @@ const TopResults = () => {
   }, [searchContext]);
 
   return (
-    <div>
+    <Box>
       {dataExists &&
       searchContext.topData !== undefined &&
       searchContext.topData.data.length !== 0 ? (
@@ -40,7 +40,7 @@ const TopResults = () => {
       ) : (
         <Typography variant="h4">Top anime data cannot be fetched</Typography>
       )}
-    </div>
+    </Box>
   );
 };
 

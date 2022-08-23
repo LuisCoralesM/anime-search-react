@@ -27,7 +27,7 @@ const Results = () => {
   }, []);
 
   return (
-    <Box mt={2}>
+    <Box>
       {dataExists &&
       searchContext.listData !== undefined &&
       searchContext.listData.data.length !== 0 ? (
